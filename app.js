@@ -58,3 +58,46 @@ for (const [key, value] of parkMap) {
 }
 
 console.log(`${parkWith1000Trees} has more than 1000 trees.`);
+
+console.log('---- ROADS DATA ----');
+
+class Street extends Infrastructure {
+  constructor(name, buildYear, length, size = 'normal') {
+    super(name, buildYear);
+    this.length = length;
+    this.size = size;
+  }
+
+  description() {
+    console.log(`${this.name}, built in ${this.buildYear}, is a ${this.size} road.`);
+  }
+}
+
+const street1 = new Street('Pandey Road', 2001, 4);
+const street2 = new Street('Pragati Marg', 2019, 2, 'small');
+const street3 = new Street('Kathar Road', 2008, 5, 'big');
+const street4 = new Street('NayaTol Galli', 2001, 2, 'tiny');
+
+const streetMap = new Map();
+streetMap.set('street1', street1);
+streetMap.set('street2', street2);
+streetMap.set('street3', street3);
+streetMap.set('street4', street4);
+
+let sumRoad = 0;
+
+streetMap.forEach((cur) => {
+  sumRoad += cur.length;
+});
+
+const avgRoad = sumRoad / streetMap.size;
+
+console.log(
+  `Our ${
+    streetMap.size
+  } roads have a total length of ${sumRoad} km, with an average length of ${avgRoad.toFixed(2)} km.`
+);
+
+for (const [key, value] of streetMap) {
+  value.description();
+}
